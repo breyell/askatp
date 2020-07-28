@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div class="columns is-multiline">
-      <b-field label="Name" class="column is-full">
+  <div class="">
+    <div class="">
+      <b-field label="Search questions previously asked on ATP">
         <b-input
           v-model="query"
           placeholder="file system"
@@ -10,17 +10,23 @@
           icon="search"
         />
       </b-field>
-      <QuestionCard
-        v-for="question in filteredQuestions"
-        :key="question.id"
-        :title="question.title"
-        :asker="question.asker"
-        :origin-url="question.originUrl"
-        :timestamp="question.episodeTime"
-        :overcast-slug="question.episode.overcastSlug"
-        :episode-number="question.episode.number"
-        :release-date="new Date(question.episode.releaseDate)"
-      />
+      <div class="columns is-multiline">
+        <div
+          v-for="question in filteredQuestions"
+          :key="question.id"
+          class="column is-one-third"
+        >
+          <QuestionCard
+            :title="question.title"
+            :asker="question.asker"
+            :origin-url="question.originUrl"
+            :timestamp="question.episodeTime"
+            :overcast-slug="question.episode.overcastSlug"
+            :episode-number="question.episode.number"
+            :release-date="new Date(question.episode.releaseDate)"
+          />
+        </div>
+      </div>
     </div>
   </div>
 </template>

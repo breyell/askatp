@@ -1,26 +1,36 @@
 <template>
-  <div class="card column is-one-third">
+  <div class="card">
     <div class="card-content">
-      <div class="media-content">
-        <div class="title" v-text="title" />
-        <div v-if="originUrl">
-          <a class="" :href="originUrl" v-text="asker" />
-        </div>
-        <div v-else class="" v-text="asker" />
-        <div>
-          <a class="" :href="overcastLink">Overcast Link</a>
-        </div>
-        <div>
-          <a
-            :href="`https://atp.fm/${episodeNumber}`"
-            target="_blank"
-            v-text="`Episode ${episodeNumber}`"
-          />
-        </div>
-        {{ timestamp }}
-        <div v-text="formattedDate" />
+      <div class="content">
+        <p class="title" v-text="title" />
+        <p>
+          <b-icon pack="fas" icon="user" size="is-small" />
+          {{ asker }}
+        </p>
+        <p>
+          <b-icon pack="fas" icon="calendar-day" size="is-small" />
+          <time :datetime="shortDate" v-text="longDate" />
+        </p>
       </div>
     </div>
+    <footer class="card-footer">
+      <a v-if="timestamp" :href="overcastLink" class="card-footer-item">
+        <figure class="image is-32x32">
+          <img src="~/assets/overcast-logo.svg" alt="Overcast Logo" />
+        </figure>
+      </a>
+      <a
+        :href="`https://atp.fm/${episodeNumber}`"
+        class="card-footer-item"
+        target="_blank"
+        v-text="'Show Notes'"
+      />
+      <a v-if="originUrl" :href="originUrl" class="card-footer-item">
+        <figure class="image is-32x32">
+          <img src="~/assets/twitter-logo.svg" alt="Twitter Logo" />
+        </figure>
+      </a>
+    </footer>
   </div>
 </template>
 
@@ -42,7 +52,7 @@ export default {
     // Could time be type date?
     timestamp: {
       type: String,
-      required: true,
+      default: null,
     },
     overcastSlug: {
       type: String,
@@ -60,15 +70,34 @@ export default {
   },
   computed: {
     overcastLink() {
-      return `https://overcast.fm/${this.overcastSlug}:${this.timestamp}`
+      if (this.timestamp) {
+        return `https://overcast.fm/${this.overcastSlug}:${this.timestamp}`
+      }
+
+      return null
     },
-    formattedDate() {
-      return this.releaseDate.toLocaleString(this.releaseDate, {
+    longDate() {
+      return this.releaseDate.toLocaleDateString(this.releaseDate, {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric',
       })
+    },
+    shortDate() {
+      const year = this.releaseDate.getFullYear()
+      let month = this.releaseDate.getMonth()
+      let date = this.releaseDate.getDate()
+
+      if (month < 10) {
+        month = '0' + month
+      }
+
+      if (date < 10) {
+        date = '0' + date
+      }
+
+      return `${year}-${month}-${date}`
     },
   },
 }
