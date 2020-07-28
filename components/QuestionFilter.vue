@@ -11,14 +11,14 @@
         />
       </b-field>
       <QuestionCard
-        v-for="question in questions"
+        v-for="question in filteredQuestions"
         :key="question.id"
         :title="question.title"
         :asker="question.asker"
         :origin-url="question.originUrl"
         :timestamp="question.episodeTime"
         :overcast-slug="question.episode.overcastSlug"
-        :episode-number="212"
+        :episode-number="question.episode.number"
         :release-date="new Date(question.episode.releaseDate)"
       />
     </div>
@@ -42,6 +42,21 @@ export default {
     return {
       query: '',
     }
+  },
+  computed: {
+    filteredQuestions() {
+      const clonedQuestions = this.questions
+
+      function comapareEpisodeNumbers(a, b) {
+        return b.episode.number - a.episode.number
+      }
+
+      return clonedQuestions
+        .sort(comapareEpisodeNumbers)
+        .filter((question) =>
+          question.title.toLowerCase().includes(this.query.toLowerCase())
+        )
+    },
   },
 }
 </script>

@@ -3,12 +3,21 @@
     <div class="card-content">
       <div class="media-content">
         <div class="title" v-text="title" />
-        <a v-if="originUrl" class="" :href="originUrl" v-text="asker" />
+        <div v-if="originUrl">
+          <a class="" :href="originUrl" v-text="asker" />
+        </div>
         <div v-else class="" v-text="asker" />
-        <a class="" :href="overcastLink">Overcast Link</a>
-        <a :href="`https://atp.fm/${episodeNumber}`" target="_blank"
-          >Episode {{ episodeNumber }}</a
-        >
+        <div>
+          <a class="" :href="overcastLink">Overcast Link</a>
+        </div>
+        <div>
+          <a
+            :href="`https://atp.fm/${episodeNumber}`"
+            target="_blank"
+            v-text="`Episode ${episodeNumber}`"
+          />
+        </div>
+        {{ timestamp }}
         <div v-text="formattedDate" />
       </div>
     </div>
