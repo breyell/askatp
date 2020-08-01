@@ -71,7 +71,7 @@ export default {
   computed: {
     overcastLink() {
       if (this.timestamp) {
-        return `https://overcast.fm/${this.overcastSlug}:${this.timestamp}`
+        return `https://overcast.fm/${this.overcastSlug}/${this.timestamp}`
       }
 
       return null
