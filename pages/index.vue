@@ -20,7 +20,7 @@ export default {
   },
   async asyncData({ $axios, error }) {
     try {
-      const { data } = await $axios.get('https://cms.askedatp.fm/questions')
+      const { data } = await $axios.get('https://cms.askatp.fm/questions')
       return { questions: data }
     } catch (e) {
       // console.log(e)
