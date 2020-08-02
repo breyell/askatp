@@ -27,6 +27,9 @@
         />
       </div>
     </div>
+    <p v-if="filteredQuestions.length === 0">
+      No questions found. Try another query.
+    </p>
   </div>
 </template>
 
