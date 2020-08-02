@@ -1,31 +1,30 @@
 <template>
-  <div class="">
-    <div class="">
-      <b-field label="Search questions previously asked on ATP">
-        <b-input
-          v-model="query"
-          placeholder="file system"
-          type="search"
-          icon-pack="fas"
-          icon="search"
+  <div class="container">
+    <b-field label="Question Search" label-position="on-border">
+      <b-input
+        v-model="query"
+        placeholder="file system"
+        type="search"
+        icon-pack="fas"
+        icon="search"
+      />
+    </b-field>
+    <div class="columns is-multiline">
+      <div
+        v-for="question in filteredQuestions"
+        :key="question.id"
+        class="column is-variable is-12-mobile is-6-tablet is-4-desktop is-3-widescreen"
+      >
+        <QuestionCard
+          :title="question.title"
+          :asker="question.asker"
+          :tweet-url="question.tweetUrl"
+          :timestamp="question.timestamp"
+          :overcast-slug="question.episode.overcastSlug"
+          :episode-title="question.episode.title"
+          :episode-number="question.episode.number"
+          :release-date="new Date(question.episode.releaseDate)"
         />
-      </b-field>
-      <div class="columns is-multiline">
-        <div
-          v-for="question in filteredQuestions"
-          :key="question.id"
-          class="column is-one-third"
-        >
-          <QuestionCard
-            :title="question.title"
-            :asker="question.asker"
-            :origin-url="question.originUrl"
-            :timestamp="question.episodeTime"
-            :overcast-slug="question.episode.overcastSlug"
-            :episode-number="question.episode.number"
-            :release-date="new Date(question.episode.releaseDate)"
-          />
-        </div>
       </div>
     </div>
   </div>

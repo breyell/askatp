@@ -1,4 +1,8 @@
-# asked-atp-nuxt
+# askatp
+
+## About
+
+This project is the frontend for [askatp.fm](https://askatp.fm) and was built on [Nuxt.js](https://nuxtjs.org).
 
 ## Build Setup
 

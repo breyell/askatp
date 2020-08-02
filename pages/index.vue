@@ -1,16 +1,21 @@
 <template>
-  <section class="container">
-    <QuestionFilter :questions="questions" />
-  </section>
+  <div>
+    <HomeHero />
+    <section class="section">
+      <QuestionFilter :questions="questions" />
+    </section>
+  </div>
 </template>
 
 <script>
+import HomeHero from '~/components/HomeHero'
 import QuestionFilter from '~/components/QuestionFilter'
 
 export default {
   name: 'Index',
   layout: 'test',
   components: {
+    HomeHero,
     QuestionFilter,
   },
   async asyncData({ $axios, error }) {

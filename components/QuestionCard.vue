@@ -1,16 +1,25 @@
 <template>
   <div class="card">
     <div class="card-content">
-      <div class="content">
-        <p class="title" v-text="title" />
-        <p>
-          <b-icon pack="fas" icon="user" size="is-small" />
-          {{ asker }}
-        </p>
-        <p>
-          <b-icon pack="fas" icon="calendar-day" size="is-small" />
-          <time :datetime="shortDate" v-text="longDate" />
-        </p>
+      <div class="content is-small">
+        <h2 class="title" v-text="title" />
+        <div v-if="asker" class="level is-mobile is-size-6">
+          <div class="level-left">
+            <b-icon pack="fas" icon="user" size="is-small" class="level-item" />
+            <p class="level-item" v-text="asker" />
+          </div>
+        </div>
+        <div class="level is-mobile is-size-6">
+          <div class="level-left">
+            <b-icon
+              pack="fas"
+              icon="calendar-day"
+              size="is-small"
+              class="level-item"
+            />
+            <time :datetime="shortDate" class="level-item" v-text="longDate" />
+          </div>
+        </div>
       </div>
     </div>
     <footer class="card-footer">
@@ -23,9 +32,9 @@
         :href="`https://atp.fm/${episodeNumber}`"
         class="card-footer-item"
         target="_blank"
-        v-text="'Show Notes'"
+        v-text="'atp.fm'"
       />
-      <a v-if="originUrl" :href="originUrl" class="card-footer-item">
+      <a v-if="tweetUrl" :href="tweetUrl" class="card-footer-item">
         <figure class="image is-32x32">
           <img src="~/assets/twitter-logo.svg" alt="Twitter Logo" />
         </figure>
@@ -45,7 +54,7 @@ export default {
       type: String,
       default: null,
     },
-    originUrl: {
+    tweetUrl: {
       type: String,
       default: null,
     },
@@ -58,11 +67,14 @@ export default {
       type: String,
       required: true,
     },
+    episodeTitle: {
+      type: String,
+      required: true,
+    },
     episodeNumber: {
       type: Number,
       required: true,
     },
-    // Could this be type Date?
     releaseDate: {
       type: Date,
       required: true,
@@ -78,7 +90,6 @@ export default {
     },
     longDate() {
       return this.releaseDate.toLocaleDateString(this.releaseDate, {
-        weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -102,3 +113,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.level + .level {
+  margin-top: -15px;
+}
+</style>
