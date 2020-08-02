@@ -23,7 +23,12 @@
       </div>
     </div>
     <footer class="card-footer">
-      <a v-if="timestamp" :href="overcastLink" class="card-footer-item">
+      <a
+        v-if="timestamp"
+        :href="overcastLink"
+        target="_blank"
+        class="card-footer-item"
+      >
         <figure class="image is-32x32">
           <img src="~/assets/overcast-logo.svg" alt="Overcast Logo" />
         </figure>
@@ -34,7 +39,12 @@
         target="_blank"
         v-text="'atp.fm'"
       />
-      <a v-if="tweetUrl" :href="tweetUrl" class="card-footer-item">
+      <a
+        v-if="tweetUrl"
+        :href="tweetUrl"
+        target="_blank"
+        class="card-footer-item"
+      >
         <figure class="image is-32x32">
           <img src="~/assets/twitter-logo.svg" alt="Twitter Logo" />
         </figure>
