@@ -46,6 +46,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
+    '@nuxtjs/google-analytics',
   ],
   /*
    ** Nuxt.js modules
@@ -79,5 +80,8 @@ export default {
         icons: ['fas'],
       },
     ],
+  },
+  googleAnalytics: {
+    id: 'UA-129564243-3',
   },
 }
