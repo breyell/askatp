@@ -104,7 +104,7 @@ export default {
     },
     longDate() {
       const date = new Date(this.releaseDate)
-      return date.toDateString(undefined, {
+      return date.toLocaleDateString(undefined, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
