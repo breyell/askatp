@@ -17,7 +17,11 @@
               size="is-small"
               class="level-item"
             />
-            <time :datetime="shortDate" class="level-item" v-text="longDate" />
+            <time
+              :datetime="releaseDate"
+              class="level-item"
+              v-text="longDate"
+            />
           </div>
         </div>
       </div>
@@ -86,7 +90,7 @@ export default {
       required: true,
     },
     releaseDate: {
-      type: Date,
+      type: String,
       required: true,
     },
   },
@@ -99,26 +103,12 @@ export default {
       return null
     },
     longDate() {
-      return this.releaseDate.toLocaleDateString(this.releaseDate, {
+      const date = new Date(this.releaseDate.split('-'))
+      return date.toLocaleDateString(undefined, {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
       })
-    },
-    shortDate() {
-      const year = this.releaseDate.getFullYear()
-      let month = this.releaseDate.getMonth()
-      let date = this.releaseDate.getDate()
-
-      if (month < 10) {
-        month = '0' + month
-      }
-
-      if (date < 10) {
-        date = '0' + date
-      }
-
-      return `${year}-${month}-${date}`
     },
   },
 }
