@@ -23,7 +23,7 @@
           :overcast-slug="question.episode.overcastSlug"
           :episode-title="question.episode.title"
           :episode-number="question.episode.number"
-          :release-date="question.episode.releaseDate"
+          :release-date="question.episode.releaseDate.split('-').join('/')"
         />
       </div>
     </div>
