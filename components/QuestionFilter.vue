@@ -56,13 +56,13 @@ export default {
       const clonedQuestions = this.questions
 
       function comapareEpisodeNumbersAndTimestamps(a, b) {
-        return b.episode.number - a.episode.number || a.timestamp > b.timestamp
+        return b.episode.number - a.episode.number || a.timestamp - b.timestamp
       }
 
       return clonedQuestions
         .sort(comapareEpisodeNumbersAndTimestamps)
         .filter((question) =>
-          question.title.toLowerCase().includes(this.query.toLowerCase())
+          question.title.toLowerCase().includes(this.query.toLowerCase().trim())
         )
     },
   },
