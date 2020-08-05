@@ -41,7 +41,7 @@
         :href="`https://atp.fm/${episodeNumber}`"
         class="card-footer-item"
         target="_blank"
-        v-text="'atp.fm'"
+        v-text="`atp.fm/${episodeNumber}`"
       />
       <a
         v-if="tweetUrl"
