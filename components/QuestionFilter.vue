@@ -34,12 +34,7 @@
 </template>
 
 <script>
-import QuestionCard from '~/components/QuestionCard'
-
 export default {
-  components: {
-    QuestionCard,
-  },
   props: {
     questions: {
       type: Array,

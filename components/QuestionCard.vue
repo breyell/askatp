@@ -72,7 +72,6 @@ export default {
       type: String,
       default: null,
     },
-    // Could time be type date?
     timestamp: {
       type: String,
       default: null,

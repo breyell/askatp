@@ -8,16 +8,9 @@
 </template>
 
 <script>
-import HomeHero from '~/components/HomeHero'
-import QuestionFilter from '~/components/QuestionFilter'
-
 export default {
   name: 'Index',
   layout: 'test',
-  components: {
-    HomeHero,
-    QuestionFilter,
-  },
   async asyncData({ $axios, error }) {
     try {
       const { data } = await $axios.get(
