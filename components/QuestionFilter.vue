@@ -2,6 +2,7 @@
   <div class="container">
     <b-field label="Question Search" label-position="on-border">
       <b-input
+        ref="search"
         v-model="query"
         placeholder="file system"
         type="search"
@@ -60,6 +61,9 @@ export default {
           question.title.toLowerCase().includes(this.query.toLowerCase().trim())
         )
     },
+  },
+  mounted() {
+    this.$refs.search.focus()
   },
 }
 </script>
