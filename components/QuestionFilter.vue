@@ -12,7 +12,8 @@
     </b-field>
     <div class="columns is-multiline">
       <div
-        v-for="question in filteredQuestions"
+        v-for="question in sortedQuestions"
+        v-show="filteredQuestions.includes(question)"
         :key="question.id"
         class="column is-variable is-12-mobile is-6-tablet is-4-desktop is-3-widescreen"
       >
@@ -28,7 +29,7 @@
         />
       </div>
     </div>
-    <p v-if="filteredQuestions.length === 0">
+    <p v-if="!filteredQuestions.length">
       No questions found. Try another query.
     </p>
   </div>
@@ -48,18 +49,19 @@ export default {
     }
   },
   computed: {
-    filteredQuestions() {
+    sortedQuestions() {
       const clonedQuestions = this.questions
 
       function comapareEpisodeNumbersAndTimestamps(a, b) {
         return b.episode.number - a.episode.number || a.timestamp - b.timestamp
       }
 
-      return clonedQuestions
-        .sort(comapareEpisodeNumbersAndTimestamps)
-        .filter((question) =>
-          question.title.toLowerCase().includes(this.query.toLowerCase().trim())
-        )
+      return clonedQuestions.sort(comapareEpisodeNumbersAndTimestamps)
+    },
+    filteredQuestions() {
+      return this.sortedQuestions.filter((question) =>
+        question.title.toLowerCase().includes(this.query.toLowerCase().trim())
+      )
     },
   },
   mounted() {
