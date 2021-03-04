@@ -52,8 +52,16 @@ export default {
     sortedQuestions() {
       const clonedQuestions = this.questions
 
+      function toSeconds(hrs, mins, seconds) {
+        return hrs * 60 * 60 + mins * 60 + seconds
+      }
+
       function comapareEpisodeNumbersAndTimestamps(a, b) {
-        return b.episode.number - a.episode.number || a.timestamp - b.timestamp
+        return (
+          b.episode.number - a.episode.number ||
+          toSeconds(...a.timestamp.split(':')) -
+            toSeconds(...b.timestamp.split(':'))
+        )
       }
 
       return clonedQuestions.sort(comapareEpisodeNumbersAndTimestamps)
