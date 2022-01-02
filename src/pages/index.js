@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from 'gatsby';
 import Nav from "../components/Nav"
+import HomeHero from "../components/HomeHero"
 import QuestionsFilter from "../components/QuestionsFilter"
 
 export default function HomePage({data}) {
@@ -12,6 +13,7 @@ export default function HomePage({data}) {
   return (
     <>
       <Nav />
+      <HomeHero />
       <QuestionsFilter questions={sortedQuestions} />
     </>
   )
