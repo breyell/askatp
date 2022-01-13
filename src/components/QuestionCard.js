@@ -28,7 +28,7 @@ export default function QuestionsCard({title, askerLink, timestamp, episode, epi
             <div className="card-footer">
                 <div className="card-footer-item">
                     <a 
-                        href={`overcast.fm/${episode.overcastSlug}/${timestamp}`}
+                        href={`https://overcast.fm/${episode.overcastSlug}/${timestamp}`}
                         className=""
                     >
                         <img src="/overcast.svg" alt="Overcast" style={{width: '35px'}} />
